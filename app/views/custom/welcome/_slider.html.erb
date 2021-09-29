@@ -3,8 +3,15 @@
     <ul class="orbit-container">
       <li class="orbit-slide">
         <figure class="orbit-figure">
-          <%= link_to budgets_path, title: t("devise_views.shared.links.signup_link") do %>
-            <%= image_tag('slider/slide2.jpg', class: 'orbit-image', alt: 'Participa') %>
+          <%= link_to "http://participa.arucas.org/debates/2-servicios-o-actividades-para-nuestros-mayores", title: "Debate sobre servicios y actividades para nuestros mayores" do %>
+            <%= image_tag('slider/slide2.jpg', class: 'orbit-image', alt: 'Debate sobre servicios y actividades para nuestros mayores') %>
+          <% end %>
+        </figure>
+      </li>
+      <li class="orbit-slide">
+        <figure class="orbit-figure">
+          <%= link_to " http://participa.arucas.org/zona-libre-de-humos-playas", title: "Zona libre de humos en nuestras playas" do %>
+            <%= image_tag('slider/slide1.jpg', class: 'orbit-image', alt: 'Zona libre de humos en nuestras playas') %>
           <% end %>
         </figure>
       </li>
@@ -22,27 +29,12 @@
           <% end %>
         </figure>
       </li>
-      <li class="orbit-slide">
-        <figure class="orbit-figure">
-          <%= link_to budgets_path, title: t("devise_views.shared.links.signup_link") do %>
-            <%= image_tag('slider/slide5.jpg', class: 'orbit-image', alt: 'Participa') %>
-          <% end %>
-        </figure>
-      </li>
-      <li class="orbit-slide">
-        <figure class="orbit-figure">
-          <%= link_to '/debates/1', title: t("devise_views.shared.links.signup_link") do %>
-            <%= image_tag('slider/slide1.jpg', class: 'orbit-image', alt: 'Participa') %>
-          <% end %>
-        </figure>
-      </li>
     </ul>
     <nav class="orbit-bullets">
-      <button class="is-active" data-slide="0"><span class="show-for-sr">First slide details.</span><span class="show-for-sr">Current Slide</span></button>
-      <button data-slide="1"><span class="show-for-sr">Second slide details.</span></button>
-      <button data-slide="2"><span class="show-for-sr">Second slide details.</span></button>
-      <button data-slide="3"><span class="show-for-sr">Second slide details.</span></button>
-      <button data-slide="4"><span class="show-for-sr">Second slide details.</span></button>
+      <button class="is-active" data-slide="0"><span class="show-for-sr">Primera diapositiva.</span><span class="show-for-sr">Current Slide</span></button>
+      <button data-slide="1"><span class="show-for-sr">Segunda diapositiva.</span></button>
+      <button data-slide="2"><span class="show-for-sr">Tercera diapositiva.</span></button>
+      <button data-slide="2"><span class="show-for-sr">Cuarta diapositiva.</span></button>
     </nav>
   </div>
 </div>
