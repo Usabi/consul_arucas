@@ -45,6 +45,9 @@ set(:config_files, %w[
 set :whenever_roles, -> { :app }
 
 namespace :deploy do
+  Rake::Task["delayed_job:default"].clear_actions
+  Rake::Task["puma:smart_restart"].clear_actions
+
   # after :updating, "rvm1:install:rvm"
   # after :updating, "rvm1:install:ruby"
   after :updating, "install_bundler_gem"
@@ -56,8 +59,9 @@ namespace :deploy do
   # after  :publishing, "setup_puma"
 
   after :published, "deploy:restart"
-  # before "deploy:restart", "puma:smart_restart"
+  # before "deploy:restart", "puma:restart"
   before "deploy:restart", "delayed_job:restart"
+  before "deploy:restart", "puma:start"
 
   # after :finished, "refresh_sitemap"
   after :publishing, "restart"
@@ -73,16 +77,6 @@ task :install_bundler_gem do
   on roles(:app) do
     within release_path do
       execute :rvm, fetch(:rvm1_ruby_version), "do", "gem install bundler --version 1.17.1"
-    end
-  end
-end
-
-task :remove_local_census_records_duplicates do
-  on roles(:db) do
-    within release_path do
-      with rails_env: fetch(:rails_env) do
-        execute :rake, "local_census_records:remove_duplicates"
-      end
     end
   end
 end
@@ -117,8 +111,7 @@ task :execute_release_tasks do
   end
 end
 
-desc "Create pid and socket folders needed by puma and convert unicorn sockets into symbolic links \
-      to the puma socket, so legacy nginx configurations pointing to the unicorn socket keep working"
+desc "Create pid and socket folders needed by puma"
 task :setup_puma do
   on roles(:app) do
     with rails_env: fetch(:rails_env) do
