@@ -10,8 +10,6 @@ $grey: #E6E6E6;
 $white: #FEFEFE;
 
 header {
-  background-color: $white;
-  padding: 0!important;
   .top-links {
     background-color: $brand-green;
     min-height: 2em;
@@ -111,9 +109,12 @@ header {
 
   .orbit-wrapper {
     .orbit-container {
-      height: 600px!important;
-      .orbit-slide img {
-        image-rendering: inherit;
+      height: 500px!important;
+      .orbit-slide {
+        position: absolute;
+        img {
+          image-rendering: inherit;
+        }
       }
     }
   }
