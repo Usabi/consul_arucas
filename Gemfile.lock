@@ -46,7 +46,7 @@ GEM
     acts-as-taggable-on (6.5.0)
       activerecord (>= 5.0, < 6.1)
     acts_as_votable (0.12.1)
-    addressable (2.7.0)
+    addressable (2.8.0)
       public_suffix (>= 2.0.2, < 5.0)
     ahoy_matey (1.6.0)
       addressable
@@ -449,7 +449,7 @@ GEM
     pronto-scss (0.11.0)
       pronto (~> 0.11.0)
       scss_lint (~> 0.43, >= 0.43.0)
-    public_suffix (4.0.6)
+    public_suffix (4.0.7)
     puma (4.3.6)
       nio4r (~> 2.0)
     racc (1.5.2)
