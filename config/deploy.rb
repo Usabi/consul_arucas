@@ -37,7 +37,7 @@ set :whenever_roles, -> { :app }
 
 namespace :deploy do
   Rake::Task["delayed_job:default"].clear_actions
-  Rake::Task["puma:smart_restart"].clear_actions
+  # Rake::Task["puma:smart_restart"].clear_actions
 
   # after :updating, "rvm1:install:rvm"
   # after :updating, "rvm1:install:ruby"
@@ -46,13 +46,13 @@ namespace :deploy do
 
   after "deploy:migrate", "add_new_settings"
 
-  before :publishing, "smtp_ssl_and_delay_jobs_secrets"
+  # before :publishing, "smtp_ssl_and_delay_jobs_secrets"
   # after  :publishing, "setup_puma"
 
   after :published, "deploy:restart"
   # before "deploy:restart", "puma:restart"
   before "deploy:restart", "delayed_job:restart"
-  before "deploy:restart", "puma:start"
+  # before "deploy:restart", "puma:start"
 
   # after :finished, "refresh_sitemap"
   after :publishing, "restart"
@@ -61,6 +61,14 @@ namespace :deploy do
   task :upgrade do
     after "add_new_settings", "execute_release_tasks"
     invoke "deploy"
+  end
+end
+
+task :install_bundler_gem do
+  on roles(:app) do
+    within release_path do
+      execute :rvm, fetch(:rvm1_ruby_version), "do", "gem install bundler --version 1.17.1"
+    end
   end
 end
 
