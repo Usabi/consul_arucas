@@ -1,5 +1,5 @@
 # config valid only for current version of Capistrano
-lock "~> 3.10.1"
+lock "~> 3.14.1"
 
 def deploysecret(key)
   @deploy_secrets_yml ||= YAML.load_file("config/deploy-secrets.yml")[fetch(:stage).to_s]
@@ -10,10 +10,7 @@ set :rails_env, fetch(:stage)
 set :rvm1_map_bins, -> { fetch(:rvm_map_bins).to_a.concat(%w[rake gem bundle ruby]).uniq }
 
 set :application, "consul"
-set :full_app_name, deploysecret(:full_app_name)
 set :deploy_to, deploysecret(:deploy_to)
-set :server_name, deploysecret(:server_name)
-set :db_server, deploysecret(:db_server)
 set :ssh_options, port: deploysecret(:ssh_port)
 
 set :repo_url, "https://github.com/Usabi/consul_arucas.git"
@@ -25,7 +22,7 @@ set :pty, true
 set :use_sudo, false
 
 set :linked_files, %w[config/database.yml config/secrets.yml]
-set :linked_dirs, %w[log tmp public/system public/assets public/ckeditor_assets]
+set :linked_dirs, %w[.bundle log tmp public/system public/assets public/ckeditor_assets]
 
 set :keep_releases, 5
 
@@ -36,15 +33,12 @@ set :puma_conf, "#{release_path}/config/puma/#{fetch(:rails_env)}.rb"
 set :delayed_job_workers, 2
 set :delayed_job_roles, :background
 
-set(:config_files, %w[
-  log_rotation
-  database.yml
-  secrets.yml
-])
-
 set :whenever_roles, -> { :app }
 
 namespace :deploy do
+  Rake::Task["delayed_job:default"].clear_actions
+  # Rake::Task["puma:smart_restart"].clear_actions
+
   # after :updating, "rvm1:install:rvm"
   # after :updating, "rvm1:install:ruby"
   after :updating, "install_bundler_gem"
@@ -52,12 +46,13 @@ namespace :deploy do
 
   after "deploy:migrate", "add_new_settings"
 
-  before :publishing, "smtp_ssl_and_delay_jobs_secrets"
+  # before :publishing, "smtp_ssl_and_delay_jobs_secrets"
   # after  :publishing, "setup_puma"
 
   after :published, "deploy:restart"
-  # before "deploy:restart", "puma:smart_restart"
+  # before "deploy:restart", "puma:restart"
   before "deploy:restart", "delayed_job:restart"
+  # before "deploy:restart", "puma:start"
 
   # after :finished, "refresh_sitemap"
   after :publishing, "restart"
@@ -77,11 +72,21 @@ task :install_bundler_gem do
   end
 end
 
-task :remove_local_census_records_duplicates do
-  on roles(:db) do
+task :install_ruby do
+  on roles(:app) do
     within release_path do
-      with rails_env: fetch(:rails_env) do
-        execute :rake, "local_census_records:remove_duplicates"
+      begin
+        current_ruby = capture(:rvm, "current")
+      rescue SSHKit::Command::Failed
+        after "install_ruby", "rvm1:install:rvm"
+        after "install_ruby", "rvm1:install:ruby"
+      else
+        if current_ruby.include?("not installed")
+          after "install_ruby", "rvm1:install:rvm"
+          after "install_ruby", "rvm1:install:ruby"
+        else
+          info "Ruby: Using #{current_ruby}"
+        end
       end
     end
   end
@@ -117,8 +122,7 @@ task :execute_release_tasks do
   end
 end
 
-desc "Create pid and socket folders needed by puma and convert unicorn sockets into symbolic links \
-      to the puma socket, so legacy nginx configurations pointing to the unicorn socket keep working"
+desc "Create pid and socket folders needed by puma"
 task :setup_puma do
   on roles(:app) do
     with rails_env: fetch(:rails_env) do
