@@ -3,6 +3,13 @@
     <ul class="orbit-container">
       <li class="orbit-slide">
         <figure class="orbit-figure">
+          <%= link_to " http://participa.arucas.org/polls/elige-la-tematica-del-carnaval-de-arucas-2023", title: "Elige la temática del carnaval de Arucas 2023" do %>
+            <%= image_tag('slider/carnaval-arucas.jpg', class: 'orbit-image slide-carnival', alt: 'Elige la temática del carnaval de Arucas 2023') %>
+          <% end %>
+        </figure>
+      </li>
+      <li class="orbit-slide">
+        <figure class="orbit-figure">
           <%= link_to "http://participa.arucas.org/debates/2-servicios-o-actividades-para-nuestros-mayores", title: "Debate sobre servicios y actividades para nuestros mayores" do %>
             <%= image_tag('slider/slide2.jpg', class: 'orbit-image', alt: 'Debate sobre servicios y actividades para nuestros mayores') %>
           <% end %>
@@ -31,10 +38,11 @@
       </li>
     </ul>
     <nav class="orbit-bullets">
-      <button class="is-active" data-slide="0"><span class="show-for-sr">Debate sobre servicios y actividades para nuestros mayores.</span></button>
-      <button data-slide="1"><span class="show-for-sr">Zona libre de humos en nuestras playas.</span></button>
-      <button data-slide="2"><span class="show-for-sr">Participa.</span></button>
+      <button class="is-active" data-slide="0"><span class="show-for-sr">Elige la temática del carnaval de Arucas 2023.</span></button>
+      <button data-slide="1"><span class="show-for-sr">Debate sobre servicios y actividades para nuestros mayores.</span></button>
+      <button data-slide="2"><span class="show-for-sr">Zona libre de humos en nuestras playas.</span></button>
       <button data-slide="3"><span class="show-for-sr">Participa.</span></button>
+      <button data-slide="4"><span class="show-for-sr">Participa.</span></button>
     </nav>
   </div>
 </div>
