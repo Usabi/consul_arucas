@@ -109,9 +109,11 @@ header {
 
   .orbit-wrapper {
     .orbit-container {
-      height: 500px!important;
+      height: 500px !important;
+
       .orbit-slide {
         position: absolute;
+
         img {
           image-rendering: inherit;
         }
@@ -176,26 +178,42 @@ main {
   }
 }
 
+@media screen and (min-width: 1665px) {
+  .orbit {
+    .orbit-wrapper {
+      height: 535px;
+
+      .orbit-container {
+        height: 100% !important;
+      }
+    }
+  }
+}
+
 @media screen and (max-width: 1024px) {
   .orbit {
     .orbit-wrapper {
       .orbit-container {
-        height: 425px!important;
+        height: 425px !important;
+
         .orbit-slide img {
           image-rendering: inherit;
         }
       }
     }
+
     .row {
       &.slogan {
         bottom: 5em;
       }
+
       &.register {
         bottom: 1em;
       }
     }
   }
 }
+
 
 @media screen and (max-width: 639px) {
   .top-bar-right {
