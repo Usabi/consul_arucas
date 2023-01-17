@@ -1,6 +1,11 @@
 GEM
-  remote: https://rubygems.org/
   remote: https://rails-assets.org/
+  specs:
+    rails-assets-leaflet (1.5.1)
+    rails-assets-markdown-it (9.0.1)
+
+GEM
+  remote: https://rubygems.org/
   specs:
     actioncable (5.2.6)
       actionpack (= 5.2.6)
@@ -463,7 +468,7 @@ GEM
       pronto (~> 0.11.0)
       scss_lint (~> 0.43, >= 0.43.0)
     public_suffix (5.0.1)
-    puma (4.3.10)
+    puma (4.3.12)
       nio4r (~> 2.0)
     racc (1.6.2)
     rack (2.2.6)
@@ -488,8 +493,6 @@ GEM
       bundler (>= 1.3.0)
       railties (= 5.2.6)
       sprockets-rails (>= 2.0.0)
-    rails-assets-leaflet (1.5.1)
-    rails-assets-markdown-it (9.0.1)
     rails-dom-testing (2.0.3)
       activesupport (>= 4.2.0)
       nokogiri (>= 1.6)
@@ -758,7 +761,7 @@ DEPENDENCIES
   pronto-eslint (~> 0.11.0)
   pronto-rubocop (~> 0.11.1)
   pronto-scss (~> 0.11.0)
-  puma (~> 4.3.10)
+  puma (~> 4.3.12)
   rails (= 5.2.6)
   rails-assets-leaflet!
   rails-assets-markdown-it (~> 9.0.1)!
