@@ -3,30 +3,38 @@
     <ul class="orbit-container">
       <li class="orbit-slide">
         <figure class="orbit-figure">
+          <%= link_to "/polls/elige-tu-carnaval", title: "Carnaval de Arucas 2024" do %>
+            <%= image_tag("slider/banner_Carnaval_Arucas_2024.jpg", class: "orbit-image", alt: "Carnaval de Arucas 2024") %>
+          <% end %>
+        </figure>
+      </li>
+      <li class="orbit-slide">
+        <figure class="orbit-figure">
           <%= link_to "/budgets/2", title: "Presupuestos Participativos Municipales 2023 - 2024 de Arucas" do %>
-            <%= image_tag('slider/banner_presupuestos_participativos_2023.jpg', class: 'orbit-image', alt: 'Presupuestos Participativos Municipales 2023 - 2024 de Arucas') %>
+            <%= image_tag("slider/banner_presupuestos_participativos_2023.jpg", class: "orbit-image", alt: "Presupuestos Participativos Municipales 2023 - 2024 de Arucas") %>
           <% end %>
         </figure>
       </li>
       <li class="orbit-slide">
         <figure class="orbit-figure">
           <%= link_to budgets_path, title: t("devise_views.shared.links.signup_link") do %>
-            <%= image_tag('slider/slide3.jpg', class: 'orbit-image', alt: 'Participa') %>
+            <%= image_tag("slider/slide3.jpg", class: "orbit-image", alt: "Participa") %>
           <% end %>
         </figure>
       </li>
       <li class="orbit-slide">
         <figure class="orbit-figure">
           <%= link_to budgets_path, title: t("devise_views.shared.links.signup_link") do %>
-            <%= image_tag('slider/slide4.jpg', class: 'orbit-image', alt: 'Participa') %>
+            <%= image_tag("slider/slide4.jpg", class: "orbit-image", alt: "Participa") %>
           <% end %>
         </figure>
       </li>
     </ul>
     <nav class="orbit-bullets">
-      <button class="is-active" data-slide="0"><span class="show-for-sr">Presupuestos Participativos Municipales 2023 - 2024 de Arucas</span></button>
-      <button data-slide="1"><span class="show-for-sr">Participa.</span></button>
+      <button class="is-active" data-slide="0"><span class="show-for-sr">Carnaval de Arucas 2024</span></button>
+      <button data-slide="1"><span class="show-for-sr">Presupuestos Participativos Municipales 2023 - 2024 de Arucas</span></button>
       <button data-slide="2"><span class="show-for-sr">Participa.</span></button>
+      <button data-slide="3"><span class="show-for-sr">Participa.</span></button>
     </nav>
   </div>
 </div>
