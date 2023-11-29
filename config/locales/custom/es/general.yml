@@ -12,6 +12,7 @@ es:
       recommendations: Recomendaciones
       title: Mi cuenta
       user_permission_debates: Participar en debates
+      user_permission_budget_investment: Crear nuevos proyectos de gastos
       user_permission_info: Con tu cuenta ya puedes...
       user_permission_proposal: Crear nuevas propuestas
       user_permission_support_proposal: Apoyar propuestas*
