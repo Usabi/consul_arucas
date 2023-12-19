@@ -987,3 +987,8 @@ es:
   machine_learning:
     comments_summary: "Resumen de comentarios"
     info_text: "Contenido generado mediante IA / Machine Learning"
+  slack:
+    budgets:
+      phase_change:
+        success: "%{budget_name} ha cambiado de la fase '%{previous_phase}' a '%{next_phase}'"
+        error: Error al cambiar de fase
