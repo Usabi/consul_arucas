@@ -5,3 +5,4 @@
 #
 
 gem "wasabi", "3.5.0"
+gem "slack-notifier"

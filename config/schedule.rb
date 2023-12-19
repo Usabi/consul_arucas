@@ -31,6 +31,10 @@ every 2.hours do
   rake "-s stats:generate"
 end
 
+every 1.day, at: "00:00", roles: [:cron] do
+  runner "Budget.change_phase"
+end
+
 # Temporally not send dashboard's notifications
 # every 1.day, at: "7:00 am" do
 #   rake "dashboards:send_notifications"
