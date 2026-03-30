@@ -10,7 +10,8 @@ require "capistrano/rails/migrations"
 #require "capistrano/passenger"
 require "capistrano/delayed_job"
 require "whenever/capistrano"
-require "rvm1/capistrano3"
+require "capistrano/asdf"
+# require "rvm1/capistrano3"
 
 # require "capistrano/puma"
 # install_plugin Capistrano::Puma, load_hooks: false
@@ -24,3 +25,4 @@ require "rvm1/capistrano3"
 Dir.glob("lib/capistrano/tasks/*.rake").each { |r| import r }
 Dir.glob("lib/capistrano/tasks/*.cap").each { |r| import r }
 Dir.glob("lib/capistrano/**/*.rb").each { |r| import r }
+pstagi
