@@ -9,8 +9,9 @@ require "capistrano/rails/assets"
 require "capistrano/rails/migrations"
 #require "capistrano/passenger"
 require "capistrano/delayed_job"
+require "capistrano/asdf"
 require "whenever/capistrano"
-require "rvm1/capistrano3"
+# require "rvm1/capistrano3"
 
 # require "capistrano/puma"
 # install_plugin Capistrano::Puma, load_hooks: false
